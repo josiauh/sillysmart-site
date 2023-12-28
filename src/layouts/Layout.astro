@@ -1,0 +1,81 @@
+---
+interface Props {
+	title: string;
+	enableTwemoji?: string;
+}
+
+const { title, enableTwemoji = "false" } = Astro.props;
+
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" href="/favicon.png" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<script src="https://unpkg.com/twemoji@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
+	</head>
+	<body>
+		<slot />
+		{ enableTwemoji.toLowerCase() == "true" &&
+			<script>
+				//@ts-ignore
+				twemoji.parse(document.body);
+			</script>
+		}
+	</body>
+</html>
+<style is:global>
+	:root {
+		--accent: 132, 234, 251;
+		--accent-light: 204, 255, 243;
+		--accent-dark: 49, 10, 101;
+		--accent-gradient: linear-gradient(
+			45deg,
+			rgb(var(--accent)),
+			rgb(var(--accent-light)) 30%,
+			white 60%
+		);
+		--button-gradient: linear-gradient(
+			45deg,
+			rgb(var(--accent)),
+			rgb(var(--accent-light))
+		);
+	}
+	html {
+		font-family: system-ui, sans-serif;
+		background: #13151a;
+		background-size: 224px;
+	}
+	code {
+		font-family:
+			Menlo,
+			Monaco,
+			Lucida Console,
+			Liberation Mono,
+			DejaVu Sans Mono,
+			Bitstream Vera Sans Mono,
+			Courier New,
+			monospace;
+	}
+	button {
+		background-color: rgb(var(--accent));
+		color: #FFFFFF;
+		padding: 50px;
+		border-radius: 10px;
+		-moz-border-radius: 10px;
+		-webkit-border-radius: 10px;
+		border-width: 0px;
+		margin:10px;
+		font-family: system-ui, sans-serif;
+		transition: background-image 2s ease-out;
+		-webkit-transition: background-image 2s ease-out;
+	}
+	button:hover {
+		background-image: var(--button-gradient);
+	}
+</style>

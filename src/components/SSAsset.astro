@@ -1,0 +1,22 @@
+---
+interface Props {
+    assetName: string;
+    type?: string;
+}
+
+const { assetName, type="png" } = Astro.props;
+const path = `assets/${assetName}.${type}`
+const altText = `The asset ${assetName} for SillySmart.`
+---
+<div>
+    <img src={path} class="asset" alt={altText}/>
+</div>
+<style>
+    .asset {
+        max-width: 500px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+    }
+</style>
