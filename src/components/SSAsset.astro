@@ -5,7 +5,7 @@ interface Props {
 }
 
 const { assetName, type="png" } = Astro.props;
-const path = `assets/${assetName}.${type}`
+const path = `/assets/${assetName}.${type}`
 const altText = `The asset ${assetName} for SillySmart.`
 ---
 <div>
