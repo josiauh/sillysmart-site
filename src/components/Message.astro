@@ -1,0 +1,52 @@
+---
+interface Props {
+    content: string;
+}
+const { content } = Astro.props
+---
+
+<div class="discord-message">
+    <div class="user-info">
+      <img class="user-avatar" src="/assets/pfp.png" alt="User Avatar">
+      <span class="username">SillySmart</span>
+    </div>
+    <div class="message-content">
+      {content}
+      <slot />
+    </div>
+  </div>
+
+<style>
+    .discord-message {
+      display: flex;
+      flex-direction: column;
+      background-color: #36393f;
+      border-radius: 8px;
+      padding: 10px;
+      max-width: 300px;
+      margin: 10px;
+    }
+
+    .user-info {
+      display: flex;
+      align-items: center;
+    }
+
+    .user-avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+
+    .username {
+      color: #7289da;
+      font-weight: bold;
+    }
+
+    .message-content {
+      color: #ffffff;
+      margin-top: 5px;
+      text-align: left;
+    }
+</style>

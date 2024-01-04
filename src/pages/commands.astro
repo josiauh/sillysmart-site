@@ -1,0 +1,91 @@
+---
+//@ts-ignore
+import Layout from '../layouts/Layout.astro';
+//@ts-ignore
+import Card from '../components/Card.astro';
+//@ts-ignore
+import SSAsset from '../components/SSAsset.astro'
+import Message from '../components/Message.astro';
+const currentDate = new Date()
+const currentYear = currentDate.getFullYear()
+const nextDate = new Date(currentYear + 1, 0, 1)
+//@ts-ignore
+const ms = nextDate - currentDate
+const dl = Math.floor(ms / 86400000)
+const hl = Math.floor(ms / 3600000)
+const ml = Math.floor(ms / 60000)
+const responsiveNewYearsMsg = `Find how much time until new years day. e.g. ${currentYear} to ${currentYear + 1}.`
+const responsiveNewYearsMsgB = `${currentYear + 1} is in ${dl >= 1 ? `${dl} days!` : hl > 24 ? `${hl} hours! We're getting there...` : `${ml} minutes! We're so close!`}`
+---
+
+<Layout title="Commands | SillySmart">
+	<div class="focusHeader">
+			<h1><span class="text-gradient">Commands</span></h1>
+			<p>What can you do with SillySmart?</p>
+			<p>note: unfinished</p>
+		</div>
+	<main>
+		<Card title='Go back' href='/' body='to home'></Card><br>
+        <Card title='/newyears' emoji='🎉' body={responsiveNewYearsMsg} href='' >
+			<Message
+			content={responsiveNewYearsMsgB}
+			></Message>
+		</Card><br>
+		<Card
+		title='/ping'
+		emoji='🏓'
+		body='Find out how much time in milliseconds SillySmart takes to reach Discord.'
+		href=''
+		>
+		<Message content='🏓 Pong! Looks like you missed., time was 27ms.'></Message>
+	</Card>
+	</main>
+</Layout>
+
+<style>
+	main {
+		margin: auto;
+		padding: 1rem;
+		width: 800px;
+		max-width: calc(100% - 2rem);
+		color: white;
+		font-size: 20px;
+		line-height: 1.6;
+		text-align: center;
+	}
+	a {
+		color: rgb(var(--accent-light));
+	}
+	a:visited {
+		color: rgb(var(--accent));
+	}
+	.astro-a {
+		position: absolute;
+		top: -32px;
+		left: 50%;
+		transform: translatex(-50%);
+		width: 220px;
+		height: auto;
+		z-index: -1;
+	}
+	h1 {
+		font-size: 4rem;
+		font-weight: 700;
+		line-height: 1;
+		text-align: center;
+		margin-bottom: 1em;
+	}
+	.text-gradient {
+		background-image: var(--accent-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-size: 400%;
+		background-position: 0%;
+	}
+	.link-card-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
+		gap: 2rem;
+		padding: 0;
+	}
+</style>

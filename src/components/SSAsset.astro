@@ -2,21 +2,45 @@
 interface Props {
     assetName: string;
     type?: string;
+    size?: string;
+    style?: string;
 }
 
-const { assetName, type="png" } = Astro.props;
+const { assetName, type="png", size="large", style="" } = Astro.props;
 const path = `/assets/${assetName}.${type}`
 const altText = `The asset ${assetName} for SillySmart.`
+const fsize = size+"Asset"
 ---
 <div>
-    <img src={path} class="asset" alt={altText}/>
+    <img src={path} class={fsize} alt={altText} style={style}/>
 </div>
 <style>
-    .asset {
+    .largeAsset {
         max-width: 500px;
         display: block;
         margin-left: auto;
         margin-right: auto;
         width: 50%;
+    }
+    .mediumAsset {
+        max-width: 250px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+    }
+    .smallAsset {
+        max-width: 100px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 30%;
+    }
+    .emojiAsset {
+        max-width: 50px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 10%;
     }
 </style>

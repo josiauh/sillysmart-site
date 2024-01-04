@@ -1,15 +1,19 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
+import SSAsset from '../components/SSAsset.astro'
 const inviteURL = "https://discord.com/api/oauth2/authorize?client_id=1148855502680375326&permissions=378159769606&response_type=code&redirect_uri=https%3A%2F%2Fsillysmart.josiauh.com%2Fthanks&scope=identify+bot";
 ---
 
 <Layout title="SillySmart">
 	<main>
-		<h1><span class="text-gradient">SillySmart</span></h1>
-		<p>The silliest but best bot you'll pick!</p>
-		<a href={inviteURL}><button>Invite SillySmart now!</button></a>
-		<p>SillySmart has:</p>
+		<div class="focusHeader">
+			<SSAsset assetName='pfp' />
+			<h1><span class="text-gradient"> SillySmart</span></h1>
+			<p>The silliest but best bot you'll pick!</p>
+			<a href={inviteURL}><button>Invite SillySmart now!</button></a>
+		</div>
+		<p>SillySmart has<a href="tea" class="nope">:</a></p>
 		<ul role="list" class="link-card-grid">
 			<Card
 				href="",
@@ -36,6 +40,12 @@ const inviteURL = "https://discord.com/api/oauth2/authorize?client_id=1148855502
 				body="Get involved with the people that use SillySmart around the world."
 			/>
 		</ul>
+		<Card
+				emoji='❓'
+				href="/commands"
+				title="What do I do now?"
+				body="Click this, and you'll get sent to the commands!"
+			/>
 		<p>This website was built with <a href="https://astro.build">{Astro.generator}</a>, bot built with <a href="https://discord.js.org/">discord.js</a></p>
 	</main>
 </Layout>
@@ -56,6 +66,15 @@ const inviteURL = "https://discord.com/api/oauth2/authorize?client_id=1148855502
 	}
 	a:visited {
 		color: rgb(var(--accent));
+	}
+	.nope {
+		text-decoration: none;
+		color: white;
+		cursor: text;
+	}
+	.nope:visited {
+		text-decoration: none;
+		color: white;
 	}
 	.astro-a {
 		position: absolute;

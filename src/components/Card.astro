@@ -1,18 +1,24 @@
 ---
+import SSAsset from './SSAsset.astro';
 interface Props {
 	title: string;
 	body: string;
 	href: string;
 	emoji?: string;
+	img?: string;
 }
 
-const { href, title, body, emoji, } = Astro.props;
+const { href, title, body, emoji, img } = Astro.props;
 ---
 
 <li class="link-card">
 	{ href != "" ? <a href={href} class="emoji-header">
 		{ emoji &&
 		<h1 class="emoji-header">{emoji}</h1>
+		}
+		{
+			img &&
+			<SSAsset assetName={img}></SSAsset>
 		}
 		<h2>
 			{title}
@@ -21,9 +27,14 @@ const { href, title, body, emoji, } = Astro.props;
 		<p>
 			{body}
 		</p>
-	</a> : <a class="emoji-header">
+		<slot />
+	</a> : <div class="emoji-header">
 		{ emoji &&
 		<h1>{emoji}</h1>
+		}
+		{
+			img &&
+			<SSAsset assetName={img}></SSAsset>
 		}
 		<h2>
 			{title}
@@ -31,7 +42,8 @@ const { href, title, body, emoji, } = Astro.props;
 		<p>
 			{body}
 		</p>
-	</a>}
+		<slot />
+	</div>}
 </li>
 <style>
 	.link-card {
@@ -47,6 +59,16 @@ const { href, title, body, emoji, } = Astro.props;
 		box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
 	}
 	.link-card > a {
+		width: 100%;
+		text-decoration: none;
+		line-height: 1.4;
+		padding: calc(1.5rem - 1px);
+		border-radius: 8px;
+		color: white;
+		background-color: #23262d;
+		opacity: 0.8;
+	}
+	.link-card > div {
 		width: 100%;
 		text-decoration: none;
 		line-height: 1.4;
